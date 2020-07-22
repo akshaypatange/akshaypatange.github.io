@@ -69,11 +69,6 @@
                 parentWindow.postMessage(JSON.stringify({
                     action: "tcfv2CookieSet"
                 }), origin);
-            } else if('"setTcfv2"' === method) {
-                setCMPCookie(TCF_V2_COOKIE_NAME, getParameterByName(loc, "value").replace(/["]+/g, ""));
-                parentWindow.postMessage(JSON.stringify({
-                    action: "tcfv2CookieSet"
-                }), origin);
             } else if ('"reset"' === method) resetCookie();
         }
     </script>
