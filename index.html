@@ -48,7 +48,7 @@
         }
 
         function getCMPCookie(e) {
-            var o = ("; " + document.cookie).split(" ; " + e + "=");
+            var o = ("; " + document.cookie).split("; " + e + "=");
             return 2 === o.length ? o.pop().split(" ;").shift() : null
         }
 
