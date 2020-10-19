@@ -1,78 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="https://cdn.cookielaw.org/consent/b104027d-4d10-4b75-9675-9ffef11562a8/OtAutoBlock.js"></script>
-    <title>iab bridge</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
-
-<body onload="init()">
-    <script>
-        var cName = null,
-            cDomain = "." + location.hostname.split(".").slice(-2).join("."),
-            cKeep = 10,
-            TCF_V2_COOKIE_NAME = "euconsent-v2";
-
-        function getParameterByName(e, o) {
-            o = o.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var t = new RegExp("[\\?&]" + o + "=([^&#]*)").exec(e);
-            return null === t ? null : decodeURIComponent(t[1].replace(/\+/g, " "))
-        }
-
-        function resetCookieInternal(e) {
-            for (var o = document.cookie.split(";"), t = [], a = 0; a < o.length; a++) {
-                for (var
-                        i = o[a];
-                    " " === i.charAt(0);) i = i.substring(1);
-                var n = i.split("=")[0],
-                    r = -1 !== n.indexOf(" -granular"); - 1 !== n.indexOf("_iub_cs") && r === e && t.push({
-                    cName: n,
-                    cValue: JSON.parse(decodeURIComponent(i.split("=")[1]))
-                })
-            }
-            for (var c = 0; c < t.length; c++) {
-                var s = t[c].cName + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/; domain=" + cDomain;
-                document.cookie = s
-            }
-        }
-
-        function resetCookie() {
-            resetCookieInternal(!1)
-        }
-
-        function setCMPCookie(e, o) {
-            var t = new Date;
-            t.setTime(t.getTime() + 33696e6);
-            var a = e + "=" + o + " ; expires=" + t.toUTCString() + " ;samesite=none";
-            a += "; path=/;secure";
-            document.cookie = a
-        }
-
-        function getCMPCookie(e) {
-            var o = ("; " + document.cookie).split("; " + e + "=");
-            return 2 === o.length ? o.pop().split(" ;").shift() : null
-        }
-
-
-        function init() {
-            var parentWindow = window.parent,
-                loc = decodeURIComponent(document.location),
-                method = getParameterByName(loc, "meth"),
-                origin = getParameterByName(loc, "origin");
-
-            if ('"getTcfv2"' === method) {
-                parentWindow.postMessage(JSON.stringify({
-                    action: "tcfv2CookieFetched",
-                    value: getCMPCookie(TCF_V2_COOKIE_NAME)
-                }), origin);
-            } else if ('"setTcfv2"' === method) {
-                setCMPCookie(TCF_V2_COOKIE_NAME, getParameterByName(loc, "value").replace(/["]+/g, ""));
-                parentWindow.postMessage(JSON.stringify({
-                    action: "tcfv2CookieSet"
-                }), origin);
-            } else if ('"reset"' === method) resetCookie();
-        }
-    </script>
+<body>
+    Test site
+    <img src="images/apple.jpg" alt="">
 </body>
-
 </html>
